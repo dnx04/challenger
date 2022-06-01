@@ -3,6 +3,9 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "cph.general.defaultLanguage": "cpp",
-    "cph.general.ignoreSTDERROR": false,
-    "cph.language.cpp.Args": "-O2 -std=gnu++17 -Wall -Wextra"
+    "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/cp/templates/normal.cpp",
+    "cph.language.cpp.Args": "-Wall -Wextra -Wconversion -static -O2 -std=c++20",
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }
