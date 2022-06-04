@@ -4,8 +4,10 @@
     "editor.formatOnSave": true,
     "cph.general.defaultLanguage": "cpp",
     "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/cp/templates/normal.cpp",
-    "cph.language.cpp.Args": "-Wall -Wextra -Wconversion -static -O2 -std=c++20",
+    "cph.language.cpp.Args": "-Wall -Wextra -std=c++20 -O2",
     "files.associations": {
-        "ostream": "cpp"
-    }
+        "ostream": "cpp",
+        "iostream": "cpp"
+    },
+    "C_Cpp.clang_format_style": "Google",
 }
