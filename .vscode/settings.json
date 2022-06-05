@@ -4,7 +4,7 @@
     "editor.formatOnSave": true,
     "cph.general.defaultLanguage": "cpp",
     "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/cp/templates/normal.cpp",
-    "cph.language.cpp.Args": "-Wall -Wextra -std=c++20 -O2",
+    "cph.language.cpp.Args": "-Wall -Wextra -std=c++17 -O2 -Dlocal",
     "files.associations": {
         "ostream": "cpp",
         "iostream": "cpp"
