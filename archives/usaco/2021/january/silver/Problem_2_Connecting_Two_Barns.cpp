@@ -74,40 +74,42 @@ signed main() {
       dsu.merge(--u, --v);
     }
     vector<vector<int>> g = dsu.groups();
-    int gn = g.size(), gs = 0, gf = 0;
-    vector<int> tail[gn];
+    vector<int> c(n);
+    int gn = g.size();
     for (int i = 0; i < gn; ++i) {
-      auto [mn, mx] = minmax_element(begin(g[i]), end(g[i]));
-      tail[i] = vector<int>({*mn, *mx});
       for (auto ele : g[i]) {
-        if (ele == 0) gs = i;
-        if (ele == n - 1) gf = i;
+        c[ele] = i;
       }
     }
-    cout << gn << '\n';
-    auto sqr = [&](int x) { return 1ll * x * x; };
+
     int ans = 1e18;
 
-    // 1 edge brute forcing
-    for (int k1 : {0, 1}) {
-      for (int k2 : {0, 1}) {
-        ans = min(ans, sqr(tail[gs][k1] - tail[gf][k2]));
+    vector<int> p1(n, 1e9), p2(n, 1e9);
+
+    // 2 pointers to keep track of the closest pair of points we want to build a
+    // path, lwb <-> proxy <-> upb, so we just need to keep track of the
+    // greatest one smaller than proxy. Also lower_bound is gay, and handling edge case
+    // of lower_bound is pain-in-the-ass.
+    for (int i = 0, idx1 = 0, idx2 = 0; i <
+    n; i++) {
+      while (idx1 < (int)g[c[0]].size()) {
+        p1[c[i]] = min(p1[c[i]], abs(i - g[c[0]][idx1]));
+        if (g[c[0]][idx1] < i)
+          idx1++;
+        else
+          break;
       }
-    }
-    // 2 edges brute forcing
-    for (int i = 0; i < gn; ++i) {
-      for (int x : {0, 1}) {
-        for (int k1 : {0, 1}) {
-          for (int k2 : {0, 1}) {
-            for (int y : {0, 1}) {
-              int p1 = sqr(tail[gs][x] - tail[i][k1]);
-              int p2 = sqr(tail[i][k2] - tail[gf][y]);
-              ans = min(ans, p1 + p2);
-            }
-          }
-        }
+      if (idx1) --idx1;
+      while (idx2 < (int)g[c[n - 1]].size()) {
+        p2[c[i]] = min(p2[c[i]], abs(i - g[c[n - 1]][idx2]));
+        if (g[c[n - 1]][idx2] < i)
+          idx2++;
+        else
+          break;
       }
+      if (idx2) --idx2;
     }
-    cout << ans << '\n';
+    for (int i = 0; i < n; i++) ans = min(ans, p1[i] * p1[i] + p2[i] *
+    p2[i]); cout << ans << "\n";
   }
 }

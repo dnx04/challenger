@@ -2,9 +2,10 @@
 
 This repo contains latest updates of my progress in Competitive Programming.
 
+My code and style evolves over time.
+
 The archives contain accepted solutions, feel free to use and learn from it.
 
-## Solving
-- [Connecting Two Barns](http://www.usaco.org/index.php?page=viewproblem2&cpid=1159)
+## Pending
 - [Cereal 2](http://www.usaco.org/index.php?page=viewproblem2&cpid=1184)
 - [Painting the Barn](http://www.usaco.org/index.php?page=viewproblem2&cpid=923)
