@@ -1,12 +1,17 @@
-#include <bits/stdc++.h>
+#ifdef DEBUG
+#define _GLIBCXX_DEBUG
+#define _GLIBCXX_ASSERTIONS
+#endif
+
+#include <bits/extc++.h>
 
 using namespace std;
 
-#ifdef local
+#ifdef DEBUG
 #include "lib/prettyprint.hpp"
 #endif
 
 signed main() { 
-  ios::sync_with_stdio(false), cin.tie(0);
+  ios::sync_with_stdio(false), cin.tie(0); 
   
 }
