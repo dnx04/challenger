@@ -3,7 +3,7 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "cph.general.defaultLanguage": "cpp",
-    "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/Challenger/cp/templates/normal.cpp",
+    "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/Hobby/challenger/templates/normal.cpp",
     "cph.language.cpp.Args": "-Wall -Wextra -Wshadow -std=c++17 -O2 -fsanitize=address,undefined -DDEBUG",
     "cph.general.timeOut": 10000,
     "files.associations": {

@@ -1,7 +1,9 @@
-# cp
+# challenger
 
-This repo contains latest updates of my progress in Competitive Programming.
+I solves problem on a frequent basis, and I update my works here.
 
 My code and style evolves over time.
 
 The archives contain accepted solutions, feel free to use and learn from it.
+
+Have a nice day!
