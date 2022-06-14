@@ -1,8 +1,8 @@
-#include <bits/extc++.h>
+#include "bits/extc++.h"
 
 using namespace std;
 
-#ifdef DEBUG
+#ifdef local
 #include "lib/prettyprint.hpp"
 #endif
 

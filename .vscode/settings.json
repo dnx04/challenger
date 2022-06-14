@@ -1,17 +1,7 @@
 {
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "[cpp]": {
-        "editor.tabSize": 2,
-    },
-    "[python]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 4
-    },
-    "cph.general.defaultLanguage": "cpp",
-    "cph.general.defaultLanguageTemplateFileLocation": "/home/sekiro/Hobby/challenger/templates/normal.cpp",
-    "cph.language.cpp.Args": "-Wall -Wextra -Wshadow -std=c++17 -O2 -fsanitize=address,undefined -DDEBUG",
-    "cph.general.timeOut": 10000,
+    "editor.tabSize": 2,
     "files.associations": {
         "ostream": "cpp",
         "iostream": "cpp"

@@ -1,6 +1,6 @@
-# challenger
+# cp
 
-I solves problem on a frequent basis, and I update my works here.
+I enjoy solving problems on a frequent basis, and I update my works here.
 
 My code and style evolves over time.
 
