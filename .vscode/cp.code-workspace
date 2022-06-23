@@ -17,7 +17,9 @@
 			"iostream": "cpp",
 			"type_traits": "cpp",
 			"bitset": "cpp",
-			"regex": "cpp"
+			"regex": "cpp",
+			"chrono": "cpp",
+			"condition_variable": "cpp"
 		}
 	}
 }
