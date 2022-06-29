@@ -1,11 +1,6 @@
 {
   "tasks": [
     {
-      "type": "process",
-      "label": "Listen to Competitive Companion",
-      "command": "",
-    },
-    {
       "type": "cppbuild",
       "label": "C/C++: g++ build active file",
       "command": "/usr/bin/g++",

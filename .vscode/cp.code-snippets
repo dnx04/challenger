@@ -1,11 +1,11 @@
 {
-	"Modular arithmetic": {
+	"Modular Arithmetic": {
 		"prefix": "modint",
 		"body": [
 			"// works for mod < 2^63",
 			"",
 			"using ull = unsigned long long;",
-			"template <ull m>",
+			"template <const ull m>",
 			"struct Mod {",
 			"  ull v;",
 			"",
@@ -31,13 +31,7 @@
 			"    return *this;",
 			"  }",
 			"  Mod& operator*=(const Mod& that) {",
-			"    long double x;",
-			"    uint64_t c;",
-			"    int64_t r;",
-			"    x = v;",
-			"    c = x * that.v / m;",
-			"    r = (int64_t)(v * that.v - c * m) % (int64_t)m;",
-			"    v = (r < 0 ? r + m : r);",
+			"    v = (__uint128_t)v * that.v % m;",
 			"    return *this;",
 			"  }",
 			"  Mod& operator/=(const Mod& that) { return (*this) *= that.inv(); }",
@@ -62,6 +56,6 @@
 			"  }",
 			"};"
 		],
-		"description": "Modular arithmetic"
+		"description": "Modular Arithmetic"
 	}
 }

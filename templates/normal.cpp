@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#ifdef local
+#ifdef DEBUG
 #include "lib/prettyprint.hpp"
 #endif
 
