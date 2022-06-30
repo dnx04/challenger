@@ -19,7 +19,17 @@
 			"bitset": "cpp",
 			"regex": "cpp",
 			"chrono": "cpp",
-			"condition_variable": "cpp"
+			"condition_variable": "cpp",
+			"*.tcc": "cpp",
+			"optional": "cpp",
+			"ratio": "cpp",
+			"system_error": "cpp",
+			"array": "cpp",
+			"functional": "cpp",
+			"tuple": "cpp",
+			"utility": "cpp",
+			"variant": "cpp",
+			"iosfwd": "cpp"
 		}
 	}
 }
