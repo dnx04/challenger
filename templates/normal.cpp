@@ -3,7 +3,7 @@
 using namespace std;
 
 #ifdef DEBUG
-#include "lib/prettyprint.hpp"
+#include "tools/prettyprint.hpp"
 #endif
 
 signed main() { 
