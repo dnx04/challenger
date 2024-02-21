@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
 
+#ifdef LOCAL
+#include "tools/lib/prettyprint.hpp"
+#endif
+
 using namespace std;
 
 #define all(x) x.begin(), x.end()
