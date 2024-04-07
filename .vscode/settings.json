@@ -10,6 +10,9 @@
   "C_Cpp.clang_format_style": "Google",
   "editor.lineNumbers": "interval",
   "files.associations": {
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "ostream": "cpp"
   },
+  "cph.general.defaultLanguageTemplateFileLocation": "/root/challenger/tools/lib/template.cpp",
+  "cph.general.defaultLanguage": "cpp"
 }
