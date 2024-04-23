@@ -14,5 +14,6 @@
     "ostream": "cpp"
   },
   "cph.general.defaultLanguageTemplateFileLocation": "/root/challenger/tools/lib/template.cpp",
-  "cph.general.defaultLanguage": "cpp"
+  "cph.general.defaultLanguage": "cpp",
+  "cph.language.cpp.Args": "-O2 --std=c++20 -Wall -Wextra "
 }
