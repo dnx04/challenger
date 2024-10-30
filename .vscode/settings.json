@@ -15,5 +15,5 @@
   },
   "cph.general.defaultLanguageTemplateFileLocation": "/home/dnx04/challenger/kactl/contest/template.cpp",
   "cph.general.defaultLanguage": "cpp",
-  "cph.language.cpp.Args": "-O2 --std=c++20 -Wall -Wextra "
+  "cph.language.cpp.Args": "-O2 --std=c++20 -Wall -Wextra"
 }
