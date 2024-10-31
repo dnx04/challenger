@@ -1,3 +1,0 @@
-[submodule "tools/kactl"]
-	path = tools/kactl
-	url = https://github.com/kth-competitive-programming/kactl.git
