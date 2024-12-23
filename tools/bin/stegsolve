@@ -1,3 +1,0 @@
-#!/bin/bash
-java -jar /home/dnx04/challenger/tools/bin/stegsolve.jar
-
