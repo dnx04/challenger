@@ -1,0 +1,3 @@
+[submodule "algo-ng"]
+	path = algo-ng
+	url = https://github.com/dnx04/algo-ng
