@@ -2,6 +2,7 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportWildcardImportFromLibrary": "none"
     },
+    "editor.tabSize": 2,
     "editor.formatOnSave": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.autoImportCompletions": true,
@@ -10,7 +11,10 @@
     "editor.lineNumbers": "interval",
     "files.associations": {
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "vector": "cpp"
     },
     "cph.general.defaultLanguageTemplateFileLocation": "/home/dnx04/challenger/algo-ng/template.cpp",
     "cph.general.defaultLanguage": "cpp",
