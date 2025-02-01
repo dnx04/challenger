@@ -9,7 +9,6 @@
                 "-std=gnu++23",
                 "-O2",
                 "-g",
-                "-static",
                 "-Wall",
                 "-Wextra",
                 "-Warith-conversion",
@@ -20,6 +19,10 @@
                 "-Wcast-align",
                 "-D_GLIBCXX_DEBUG",
                 "-DLOCAL",
+                "-fsanitize=address",
+                "-fsanitize=undefined",
+                "-fno-sanitize-recover",
+                "-fstack-protector",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

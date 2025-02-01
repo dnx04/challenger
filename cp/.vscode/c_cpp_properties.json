@@ -5,6 +5,9 @@
             "defines": [
                 "LOCAL"
             ],
+            "includePath": [
+                "algo-ng",
+            ],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
             "cppStandard": "gnu++23",
