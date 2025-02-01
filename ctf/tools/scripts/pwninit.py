@@ -3,10 +3,8 @@
 from pwn import *
 
 {bindings}
-
 context.binary = {bin_name}
 context.terminal = [ "wt.exe", "--", "wsl.exe", "--" ]
-
 
 def conn():
     if args.LOCAL:

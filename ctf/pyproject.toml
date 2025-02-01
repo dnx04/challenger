@@ -5,7 +5,6 @@ description = "CTF Environment"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "impacket>=0.13.0.dev0",
     "netexec",
     "pwntools>=4.14.0",
     "sqlmap>=1.9",
