@@ -9,13 +9,6 @@
     "editor.formatOnPaste": true,
     "C_Cpp.clang_format_style": "Google",
     "editor.lineNumbers": "interval",
-    "files.associations": {
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "*.tcc": "cpp",
-        "deque": "cpp",
-        "vector": "cpp"
-    },
     "cph.general.defaultLanguageTemplateFileLocation": "/home/dnx04/challenger/algo-ng/template.cpp",
     "cph.general.defaultLanguage": "cpp",
     "cph.language.cpp.Args": "-O2 --std=c++20 -Wall -Wextra -DLOCAL"
