@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 #
-# JWT_Tool version 2.2.6 (09_09_2022)
+# JWT_Tool version 2.2.7 (28_05_2024)
 # Written by Andy Tyler (@ticarpi)
 # Please use responsibly...
 # Software URL: https://github.com/ticarpi/jwt_tool
 # Web: https://www.ticarpi.com
 # Twitter: @ticarpi
 
-jwttoolvers = "2.2.6"
+jwttoolvers = "2.2.7"
 import ssl
 import sys
 import os
@@ -17,6 +17,7 @@ import hmac
 import base64
 import json
 import random
+from urllib.parse import urljoin, urlparse
 import argparse
 from datetime import datetime
 import configparser
@@ -184,7 +185,7 @@ def parse_dict_cookies(value):
 def strip_dict_cookies(value):
     cookiestring = ""
     for item in value.split(';'):
-        if re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', item):
+        if re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', item):
             continue
         else:
             cookiestring += "; "+item
@@ -197,7 +198,7 @@ def jwtOut(token, fromMod, desc=""):
     logID = "jwttool_"+hashlib.md5(idFrag.encode()).hexdigest()
     if config['argvals']['targetUrl'] != "":
         curTargetUrl = config['argvals']['targetUrl']
-        p = re.compile('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*')
+        p = re.compile(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*')
 
         if config['argvals']['headerloc'] == "cookies":
             cookietoken = p.subn(token, config['argvals']['cookies'], 0)
@@ -1341,16 +1342,16 @@ def searchLog(logID):
     with open(logFilename, 'r') as logFile:
         logLine = logFile.readline()
         while logLine:
-            if re.search('^'+logID, logLine):
+            if re.search(r'^'+logID, logLine):
                 qResult = logLine
                 break
             else:
                 logLine = logFile.readline()
         if qResult:
-            qOutput = re.sub(' - eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', '', qResult)
+            qOutput = re.sub(r' - eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', '', qResult)
             qOutput = re.sub(logID+' - ', '', qOutput)
             try:
-                jwt = re.findall('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', qResult)[-1]
+                jwt = re.findall(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', qResult)[-1]
             except:
                 cprintc("JWT not included in log", "red")
                 exit(1)
@@ -1809,15 +1810,15 @@ def runActions():
 
 def printLogo():
     print()
-    print("   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\                  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ ")
-    print("   \__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m | \x1b[48;5;24m \x1b[0m\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __| \__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __|                 \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
-    print("      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m | \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
-    print("      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
-    print("\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  _\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
+    print("   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\                  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ ")
+    print("   \\__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m | \x1b[48;5;24m \x1b[0m\\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\\__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __| \\__\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __|                 \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
+    print("      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m | \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
+    print("      \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  __\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\ \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
+    print("\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  _\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
     print("\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  / \\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |  \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
     print("\\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  /   \\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |   \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |       \x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |\\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  |\\\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m  |\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m |")
-    print(" \______/ \__/     \__|   \__|\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\__| \______/  \______/ \__|")
-    print(" \x1b[36mVersion "+jwttoolvers+"          \x1b[0m      \______|             \x1b[36m@ticarpi\x1b[0m      ")
+    print(" \\______/ \\__/     \\__|   \\__|\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\x1b[48;5;24m \x1b[0m\\__| \\______/  \\______/ \\__|")
+    print(" \x1b[36mVersion "+jwttoolvers+"          \x1b[0m      \\______|             \x1b[36m@ticarpi\x1b[0m      ")
     print()
 
 if __name__ == '__main__':
@@ -1828,6 +1829,10 @@ if __name__ == '__main__':
                         help="return TOKENS ONLY")
     parser.add_argument("-t", "--targeturl", action="store",
                         help="URL to send HTTP request to with new JWT")
+    parser.add_argument("-r", "--request", action="store",
+                        help="URL request to base on")
+    parser.add_argument("-i", "--insecure", action="store_true",
+                        help="Use HTTP for passed request")
     parser.add_argument("-rc", "--cookies", action="store",
                         help="request cookies to send with the forged HTTP request")
     parser.add_argument("-rh", "--headers", action="append",
@@ -1906,20 +1911,76 @@ if __name__ == '__main__':
     with open(path+"/null.txt", 'w') as nullfile:
         pass
     findJWT = ""
+
+    if args.request:
+        port = ''
+
+        with open(args.request, 'r') as file:
+            first_line = file.readline().strip()
+            method, first_line_remainder = first_line.split(' ', 1)
+            url = first_line_remainder.split(' ', 1)[0]
+            base_url = ''
+        
+            in_headers = True
+            args.postdata = ''
+
+            for line in file:
+                
+                line = line.strip()
+                if not line:
+                    # Stop when reaching an empty line (end of headers)
+                    in_headers = False
+                    continue
+
+                if in_headers:
+                    if line.lower().startswith('host:'):
+                        # Extract the host from the 'Host' header
+                        _, host = line.split(':', 1)
+                        host = host.strip()
+                        
+                        if ':' in host:
+                            host, port = host.split(':', 1)
+
+                        protocol = "http" if args.insecure else "https"
+
+                        base_url = f"{protocol}://{host}"
+                        
+                    elif line.lower().startswith('cookie:'):
+                        cookie = line.split(': ')[1]
+                        if not args.cookies:
+                            args.cookies = ''
+                        args.cookies += cookie
+                    else:
+                        # Don't add user agent field, otherwise 'jwt_tool' in user agent will not work
+                        if not line.lower().startswith('user-agent:'):
+                            if not args.headers:
+                                args.headers = []
+                            args.headers.append(line)
+                else:
+                    args.postdata += line
+
+            if not port:
+                url_object = urlparse(url)
+                if url_object.port:
+                    port = str(url_object.port)
+
+        absolute_url = urljoin(base_url + (':' + port if port else ''), url)
+        args.targeturl = absolute_url
+
     if args.targeturl:
         if args.cookies or args.headers or args.postdata:
             jwt_count = 0
             jwt_locations = []
 
-            if args.cookies and re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', args.cookies):
+            if args.cookies and re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', args.cookies):
                 jwt_count += 1
                 jwt_locations.append("cookie")
 
-            if args.headers and re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.headers)):
+            if args.headers and re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.headers)):
                 jwt_count += 1
                 jwt_locations.append("headers")
 
-            if args.postdata and re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.postdata)):
+            if args.postdata and re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.postdata)):
                 jwt_count += 1
                 jwt_locations.append("post data")
 
@@ -1929,7 +1990,7 @@ if __name__ == '__main__':
 
             if args.cookies:
                 try:
-                    if re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', args.cookies):
+                    if re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', args.cookies):
                         config['argvals']['headerloc'] = "cookies"
                 except:
                     cprintc("Invalid cookie formatting", "red")
@@ -1937,7 +1998,7 @@ if __name__ == '__main__':
 
             if args.headers:
                 try:
-                    if re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.headers)):
+                    if re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.headers)):
                         config['argvals']['headerloc'] = "headers"
                 except:
                     cprintc("Invalid header formatting", "red")
@@ -1945,7 +2006,7 @@ if __name__ == '__main__':
 
             if args.postdata:
                 try:
-                    if re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.postdata)):
+                    if re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', str(args.postdata)):
                         config['argvals']['headerloc'] = "postdata"
                 except:
                     cprintc("Invalid postdata formatting", "red")
@@ -1956,9 +2017,9 @@ if __name__ == '__main__':
                 str(args.headers),
                 str(args.postdata)
             ])
-
+            
             try:
-                findJWT = re.search('eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', searchString)[0]
+                findJWT = re.search(r'eyJ[A-Za-z0-9_\/+-]*\.eyJ[A-Za-z0-9_\/+-]*\.[A-Za-z0-9._\/+-]*', searchString)[0]
             except:
                 cprintc("Cannot find a valid JWT", "red")
                 cprintc(searchString, "cyan")
@@ -2035,6 +2096,8 @@ if __name__ == '__main__':
         config['services']['proxy'] = "False"
     if args.noredir:
         config['services']['redir'] = "False"
+    if args.request:
+        config['argvals']['request'] = args.request
 
     if not args.crack and not args.exploit and not args.verify and not args.tamper and not args.injectclaims:
         rejigToken(headDict, paylDict, sig)

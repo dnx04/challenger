@@ -1,0 +1,3 @@
+[hooks.enter]
+shell = "fish"
+script = "source algo-ng/stress.fish"
