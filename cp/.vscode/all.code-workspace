@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../ctf"
+		}
+	],
+	"settings": {
+		"cph.general.defaultLanguageTemplateFileLocation": "/home/dnx04/challenger/cp/algo-ng/template.cpp",
+		"cph.general.defaultLanguage": "cpp",
+		"cph.language.cpp.Args": "-O2 -g --std=gnu++23 -Wall -Wextra -Warith-conversion -Wlogical-op -Wshift-overflow=2 -Wcast-qual -Wcast-align -Wduplicated-cond -DLOCAL -D_GLIBCXX_DEBUG -fsanitize=address -fsanitize=undefined -fno-sanitize-recover -fstack-protector",
+		"files.associations": {
+			"array": "cpp",
+			"bitset": "cpp",
+			"string_view": "cpp",
+			"rope": "cpp",
+			"slist": "cpp",
+			"initializer_list": "cpp",
+			"ranges": "cpp",
+			"span": "cpp",
+			"stacktrace": "cpp",
+			"regex": "cpp",
+			"dynamic_bitset": "cpp",
+			"valarray": "cpp"
+		}
+	}
+}

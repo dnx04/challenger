@@ -1,14 +1,14 @@
 [project]
 name = "ctf"
 version = "0.1.0"
-description = "CTF Environment"
-readme = "README.md"
+description = "CTF scripts"
 requires-python = ">=3.13"
 dependencies = [
-    "netexec",
-    "pwntools>=4.14.0",
-    "sqlmap>=1.9",
+    "bashfuscator",
+    "cupp>=1.3.3",
+    "impacket>=0.12.0",
+    "xsstrike>=3.2.2",
 ]
 
 [tool.uv.sources]
-netexec = { git = "https://github.com/Pennyw0rth/NetExec" }
+bashfuscator = { git = "https://github.com/Bashfuscator/Bashfuscator.git" }
