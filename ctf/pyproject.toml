@@ -5,12 +5,16 @@ description = "CTF scripts"
 requires-python = ">=3.13"
 dependencies = [
     "bashfuscator",
+    "bloodhound-ce>=1.8.0",
     "cupp>=1.3.3",
+    "git-dumper>=1.0.8",
     "hashid>=3.1.4",
     "impacket>=0.12.0",
+    "netexec",
     "pycryptodomex>=3.21.0",
     "xsstrike>=3.2.2",
 ]
 
 [tool.uv.sources]
 bashfuscator = { git = "https://github.com/Bashfuscator/Bashfuscator.git" }
+netexec = { git = "https://github.com/Pennyw0rth/NetExec" }

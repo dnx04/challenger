@@ -24,7 +24,8 @@
 			"regex": "cpp",
 			"dynamic_bitset": "cpp",
 			"valarray": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"complex": "cpp"
 		}
 	}
 }
