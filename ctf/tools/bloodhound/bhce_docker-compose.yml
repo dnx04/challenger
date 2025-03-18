@@ -69,6 +69,7 @@ services:
       - bhe_database_connection=user=${POSTGRES_USER:-bloodhound} password=${POSTGRES_PASSWORD:-bloodhoundcommunityedition} dbname=${POSTGRES_DB:-bloodhound} host=app-db
       - bhe_neo4j_connection=neo4j://${NEO4J_USER:-neo4j}:${NEO4J_SECRET:-bloodhoundcommunityedition}@graph-db:7687/
       - bhe_recreate_default_admin=${bhe_recreate_default_admin:-false}
+      - bhe_graph_driver=${GRAPH_DRIVER:-neo4j}
       ### Add additional environment variables you wish to use here.
       ### For common configuration options that you might want to use environment variables for, see `.env.example`
       ### example: bhe_database_connection=${bhe_database_connection}
@@ -77,7 +78,7 @@ services:
     ports:
       ### Default to localhost to prevent accidental publishing of the service to your outer networks
       ### These can be modified by your .env file or by setting the environment variables in your Docker host OS
-      - ${BLOODHOUND_HOST:-127.0.0.1}:${BLOODHOUND_PORT:-8082}:8080
+      - ${BLOODHOUND_HOST:-127.0.0.1}:${BLOODHOUND_PORT:-8080}:8080
     ### Uncomment to use your own bloodhound.config.json to configure the application
     # volumes:
     #   - ./bloodhound.config.json:/bloodhound.config.json:ro

@@ -260,6 +260,22 @@ wheels = [
 ]
 
 [[package]]
+name = "bloodyad"
+version = "2.1.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asn1crypto" },
+    { name = "cryptography" },
+    { name = "dnspython" },
+    { name = "msldap" },
+    { name = "winacl" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e3/77/bfc542afe0c740c6c216a5c0d1fd581f6fc8497156976423df10ad5d1ff3/bloodyad-2.1.8.tar.gz", hash = "sha256:a2d4f6cd179327868636d22facce964936266bb9050414bb27bb955d803f5fa0", size = 197473 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a9/98/ff5d5d22e99674d726986ec492bc4963f1dcb0387f012f2891a0df49b50a/bloodyad-2.1.8-py3-none-any.whl", hash = "sha256:a6f31a7768e104f0d55a7af8a215fd446e7f864ee4cf5f25e2015943b323d8cd", size = 204832 },
+]
+
+[[package]]
 name = "certifi"
 version = "2025.1.31"
 source = { registry = "https://pypi.org/simple" }
@@ -374,6 +390,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "bashfuscator" },
     { name = "bloodhound-ce" },
+    { name = "bloodyad" },
     { name = "cupp" },
     { name = "git-dumper" },
     { name = "hashid" },
@@ -387,6 +404,7 @@ dependencies = [
 requires-dist = [
     { name = "bashfuscator", git = "https://github.com/Bashfuscator/Bashfuscator.git" },
     { name = "bloodhound-ce", specifier = ">=1.8.0" },
+    { name = "bloodyad", specifier = ">=2.1.8" },
     { name = "cupp", specifier = ">=1.3.3" },
     { name = "git-dumper", specifier = ">=1.0.8" },
     { name = "hashid", specifier = ">=3.1.4" },
