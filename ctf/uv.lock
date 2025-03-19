@@ -285,6 +285,31 @@ wheels = [
 ]
 
 [[package]]
+name = "certipy-ad"
+version = "4.8.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asn1crypto" },
+    { name = "cryptography" },
+    { name = "dnspython" },
+    { name = "dsinternals" },
+    { name = "impacket" },
+    { name = "ldap3" },
+    { name = "pyasn1" },
+    { name = "pycryptodome" },
+    { name = "pyopenssl" },
+    { name = "requests" },
+    { name = "requests-ntlm" },
+    { name = "unicrypto" },
+    { name = "winacl", marker = "sys_platform == 'win32'" },
+    { name = "wmi", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ff/fd/349505ced12b137fc05c174fde5b798fcefa032dfbd8bf70549a65598e42/certipy-ad-4.8.2.tar.gz", hash = "sha256:03aa7e898eff2946c32494f82c2f156afbbc966fd157e599780ab19d638eaf50", size = 131612 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/84/67/800ec91190733c5626cb33794ce264625caefe9a72123c3f1825b8b2da6e/certipy_ad-4.8.2-py3-none-any.whl", hash = "sha256:186bfdd3a3ff59e35e7fc61a593e9d6fac602b7493753db84b4b97e3915354d3", size = 130620 },
+]
+
+[[package]]
 name = "cffi"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
@@ -350,6 +375,15 @@ wheels = [
 ]
 
 [[package]]
+name = "configparser"
+version = "7.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8b/ac/ea19242153b5e8be412a726a70e82c7b5c1537c83f61b20995b2eda3dcd7/configparser-7.2.0.tar.gz", hash = "sha256:b629cc8ae916e3afbd36d1b3d093f34193d851e11998920fdcfc4552218b7b70", size = 51273 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/09/fe/f61e7129e9e689d9e40bbf8a36fb90f04eceb477f4617c02c6a18463e81f/configparser-7.2.0-py3-none-any.whl", hash = "sha256:fee5e1f3db4156dcd0ed95bc4edfa3580475537711f67a819c966b389d09ce62", size = 17232 },
+]
+
+[[package]]
 name = "cryptography"
 version = "42.0.8"
 source = { registry = "https://pypi.org/simple" }
@@ -391,12 +425,14 @@ dependencies = [
     { name = "bashfuscator" },
     { name = "bloodhound-ce" },
     { name = "bloodyad" },
+    { name = "certipy-ad" },
     { name = "cupp" },
     { name = "git-dumper" },
     { name = "hashid" },
     { name = "impacket" },
     { name = "netexec" },
     { name = "pycryptodomex" },
+    { name = "smbmap" },
     { name = "xsstrike" },
 ]
 
@@ -405,12 +441,14 @@ requires-dist = [
     { name = "bashfuscator", git = "https://github.com/Bashfuscator/Bashfuscator.git" },
     { name = "bloodhound-ce", specifier = ">=1.8.0" },
     { name = "bloodyad", specifier = ">=2.1.8" },
+    { name = "certipy-ad", specifier = ">=4.8.2" },
     { name = "cupp", specifier = ">=1.3.3" },
     { name = "git-dumper", specifier = ">=1.0.8" },
     { name = "hashid", specifier = ">=3.1.4" },
     { name = "impacket", specifier = ">=0.12.0" },
     { name = "netexec", git = "https://github.com/Pennyw0rth/NetExec" },
     { name = "pycryptodomex", specifier = ">=3.21.0" },
+    { name = "smbmap", specifier = ">=1.10.7" },
     { name = "xsstrike", specifier = ">=3.2.2" },
 ]
 
@@ -1149,6 +1187,16 @@ wheels = [
 ]
 
 [[package]]
+name = "pywin32"
+version = "310"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1c/09/9c1b978ffc4ae53999e89c19c77ba882d9fce476729f23ef55211ea1c034/pywin32-310-cp313-cp313-win32.whl", hash = "sha256:5d241a659c496ada3253cd01cfaa779b048e90ce4b2b38cd44168ad555ce74ab", size = 8794384 },
+    { url = "https://files.pythonhosted.org/packages/45/3c/b4640f740ffebadd5d34df35fecba0e1cfef8fde9f3e594df91c28ad9b50/pywin32-310-cp313-cp313-win_amd64.whl", hash = "sha256:667827eb3a90208ddbdcc9e860c81bde63a135710e21e4cb3348968e4bd5249e", size = 9503039 },
+    { url = "https://files.pythonhosted.org/packages/b4/f4/f785020090fb050e7fb6d34b780f2231f302609dc964672f72bfaeb59a28/pywin32-310-cp313-cp313-win_arm64.whl", hash = "sha256:e308f831de771482b7cf692a1f308f8fca701b2d8f9dde6cc440c7da17e47b33", size = 8458152 },
+]
+
+[[package]]
 name = "requests"
 version = "2.32.3"
 source = { registry = "https://pypi.org/simple" }
@@ -1161,6 +1209,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6", size = 64928 },
+]
+
+[[package]]
+name = "requests-ntlm"
+version = "1.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cryptography" },
+    { name = "pyspnego" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/15/74/5d4e1815107e9d78c44c3ad04740b00efd1189e5a9ec11e5275b60864e54/requests_ntlm-1.3.0.tar.gz", hash = "sha256:b29cc2462623dffdf9b88c43e180ccb735b4007228a542220e882c58ae56c668", size = 16112 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9e/5d/836b97537a390cf811b0488490c389c5a614f0a93acb23f347bd37a2d914/requests_ntlm-1.3.0-py3-none-any.whl", hash = "sha256:4c7534a7d0e482bb0928531d621be4b2c74ace437e88c5a357ceb7452d25a510", size = 6577 },
 ]
 
 [[package]]
@@ -1205,6 +1267,22 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050 },
+]
+
+[[package]]
+name = "smbmap"
+version = "1.10.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "configparser" },
+    { name = "impacket" },
+    { name = "pyasn1" },
+    { name = "pycryptodome" },
+    { name = "termcolor" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5d/71/67383cc4ab60fde6ed6d275540e7273fbf6af747b703e7fc260a1fb24bcd/smbmap-1.10.7.tar.gz", hash = "sha256:339bfda64da4e18fcdf21d93bfae20ef60804cf9505d4e5bbcde0245af5e2933", size = 43553 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/65/07/3bbd917844ad735396c106fdc27a13a142ad6c1c81681e9caaaae3d7c321/smbmap-1.10.7-py3-none-any.whl", hash = "sha256:8cfadb6ad8a8545d6b8f40d3284102751e4297abc510816cf8b95323ea221c36", size = 38216 },
 ]
 
 [[package]]
@@ -1356,6 +1434,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/23/fc/70784bbc5521a4a59c78dea0050e1478d67b2e77a54abcc5aa5f835faaf5/winacl-0.1.9.tar.gz", hash = "sha256:af70c2ec30178bf9e3c8a1c48c25e8781235fe2c1b321adb46e2f2ae1f8d4aab", size = 81777 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/64/82/9be45ef89488ad87870da83271cb734f410373ca86dde76d6907d74cf0e0/winacl-0.1.9-py3-none-any.whl", hash = "sha256:31ba781a35f3b1bd3c2ece994816c0a5fe113c73018689ab6118010ac0d15099", size = 89218 },
+]
+
+[[package]]
+name = "wmi"
+version = "1.5.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pywin32" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d4/66/6364deb0a03415f96c66803d8c4379f808f2401da3bdb183348487b10510/WMI-1.5.1.tar.gz", hash = "sha256:b6a6be5711b1b6c8d55bda7a8befd75c48c12b770b9d227d31c1737dbf0d40a6", size = 26254 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/b9/a80d1ed4d115dac8e2ac08d16af046a77ab58e3d186e22395bf2add24090/WMI-1.5.1-py2.py3-none-any.whl", hash = "sha256:1d6b085e5c445141c475476000b661f60fff1aaa19f76bf82b7abb92e0ff4942", size = 28912 },
 ]
 
 [[package]]
