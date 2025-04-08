@@ -5,6 +5,7 @@ from pwn import *
 {bindings}
 context.binary = {bin_name}
 context.terminal = [ "wt.exe", "--", "wsl.exe", "--" ]
+context.log_level = "debug"
 
 def conn():
     if args.LOCAL:
